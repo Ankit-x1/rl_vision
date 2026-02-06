@@ -305,22 +305,7 @@ This is a research project. If you find bugs or have ideas for improvements:
 - **PPO Algorithm**: Proximal Policy Optimization Algorithms (Schulman et al., 2017)
 - **Early Exit Networks**: BranchyNet (Teerapittayanon et al., 2016)
 
----
 
-##  Contact
 
-Built by Ankit karki demonstrating:
-- Computer Vision
-- Reinforcement Learning
-- Edge AI / Model Optimization
-- Systems Thinking in ML Models
-
-**This project shows I can:**
-- Design multi-objective systems
-- Think beyond accuracy metrics
-- Build deployable, constraint-aware models
-- Communicate complex ideas clearly
-
----
 
 **Status:**  Fully implemented and documented
