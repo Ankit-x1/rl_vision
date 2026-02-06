@@ -257,37 +257,6 @@ Explicit edge-aware training with simulated latency/compute constraints.
 
 ---
 
-## Repository Structure
-
-```
-vision_rl_edge/
-├── models/
-│   ├── backbone.py          # ResNet-18 with early exits
-│   ├── early_exit.py        # Exit head architecture
-├── rl/
-│   ├── env.py               # RL environment (state/action/reward)
-│   ├── agent.py             # PPO agent implementation
-│   ├── policy.py            # Policy and value networks
-├── train_supervised.py      # Train base model
-├── train_rl.py              # Train RL policy
-├── evaluate.py              # Evaluation and visualization
-├── configs/
-│   ├── model_config.yaml    # Model architecture settings
-│   ├── rl_config.yaml       # RL hyperparameters
-│   ├── edge_config.yaml     # Device profiles
-├── utils/
-│   ├── metrics.py           # Evaluation metrics
-│   ├── visualization.py     # Plotting utilities
-│   ├── data_loader.py       # CIFAR-100 data loading
-├── results/                 # Auto-generated plots and logs
-├── checkpoints/             # Saved models
-├── README.md
-├── requirements.txt
-├── .gitignore
-```
-
----
-
 ##  Contributing
 
 This is a research project. If you find bugs or have ideas for improvements:
@@ -304,8 +273,6 @@ This is a research project. If you find bugs or have ideas for improvements:
 - **CIFAR-100 Dataset**: Learning Multiple Layers of Features from Tiny Images (Krizhevsky, 2009)
 - **PPO Algorithm**: Proximal Policy Optimization Algorithms (Schulman et al., 2017)
 - **Early Exit Networks**: BranchyNet (Teerapittayanon et al., 2016)
-
-
 
 
 **Status:**  Fully implemented and documented
