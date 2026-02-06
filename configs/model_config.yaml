@@ -1,0 +1,51 @@
+# Model Configuration
+model:
+  name: "resnet18_early_exit"
+  num_classes: 100  # CIFAR-100
+  input_size: [3, 32, 32]
+  
+  # Early exit configuration
+  early_exits:
+    enabled: true
+    exit_points: [1, 2, 3]  # After which ResNet blocks to add exits
+    exit_hidden_dim: 256
+    
+  # Backbone settings
+  backbone:
+    pretrained: false  # Train from scratch for CIFAR-100
+    dropout: 0.3
+    
+# Training Configuration
+training:
+  batch_size: 128
+  num_epochs: 200
+  learning_rate: 0.1
+  momentum: 0.9
+  weight_decay: 5e-4
+  
+  # Learning rate schedule
+  lr_scheduler:
+    type: "cosine"
+    warmup_epochs: 5
+    min_lr: 1e-5
+    
+  # Data augmentation
+  augmentation:
+    random_crop: true
+    random_flip: true
+    cutout: true
+    cutout_size: 16
+    
+# Dataset Configuration
+dataset:
+  name: "cifar100"
+  data_dir: "./data"
+  num_workers: 4
+  pin_memory: true
+  
+# Checkpoint Configuration
+checkpoint:
+  save_dir: "./checkpoints"
+  save_frequency: 10  # Save every N epochs
+  keep_best: true
+  metric: "val_accuracy"

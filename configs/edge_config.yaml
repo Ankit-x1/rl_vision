@@ -1,0 +1,90 @@
+# Edge Device Profiles
+# These simulate different deployment scenarios
+
+low_power:
+  name: "Low Power Device"
+  description: "Mobile phone, IoT sensor"
+  
+  constraints:
+    max_latency_ms: 15
+    max_flops: 50_000_000  # 50M FLOPs
+    target_accuracy: 0.65
+    
+  layer_costs:
+    # Latency per layer (ms)
+    layer_1: 2.0
+    layer_2: 3.5
+    layer_3: 5.0
+    layer_4: 7.5
+    
+  # Reward weights for this profile
+  reward_weights:
+    alpha: 0.7   # Lower accuracy weight
+    beta: 1.0    # Higher latency penalty
+    gamma: 0.8   # Higher compute penalty
+
+medium_power:
+  name: "Medium Power Device"
+  description: "Tablet, mid-range phone"
+  
+  constraints:
+    max_latency_ms: 30
+    max_flops: 150_000_000  # 150M FLOPs
+    target_accuracy: 0.75
+    
+  layer_costs:
+    layer_1: 1.5
+    layer_2: 2.5
+    layer_3: 4.0
+    layer_4: 6.0
+    
+  reward_weights:
+    alpha: 1.0
+    beta: 0.5
+    gamma: 0.3
+
+high_power:
+  name: "High Power Device"
+  description: "Desktop GPU, edge server"
+  
+  constraints:
+    max_latency_ms: 50
+    max_flops: 500_000_000  # 500M FLOPs
+    target_accuracy: 0.85
+    
+  layer_costs:
+    layer_1: 0.5
+    layer_2: 1.0
+    layer_3: 1.5
+    layer_4: 2.5
+    
+  reward_weights:
+    alpha: 1.5   # Higher accuracy weight
+    beta: 0.2    # Lower latency penalty
+    gamma: 0.1   # Lower compute penalty
+
+# Adaptive profile (learns to switch)
+adaptive:
+  name: "Adaptive Device"
+  description: "Dynamically adjusts based on battery/load"
+  
+  constraints:
+    max_latency_ms: 25
+    max_flops: 100_000_000
+    target_accuracy: 0.70
+    
+  layer_costs:
+    layer_1: 1.5
+    layer_2: 2.5
+    layer_3: 4.0
+    layer_4: 6.0
+    
+  reward_weights:
+    alpha: 1.0
+    beta: 0.6
+    gamma: 0.4
+    
+  # Adaptive behavior
+  adaptive_mode:
+    enabled: true
+    switch_threshold: 0.8  # Confidence threshold to exit early

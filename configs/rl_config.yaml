@@ -1,0 +1,68 @@
+# RL Configuration
+rl:
+  algorithm: "ppo"
+  total_timesteps: 500000
+  
+  # PPO Hyperparameters
+  ppo:
+    learning_rate: 3e-4
+    gamma: 0.99  # Discount factor
+    gae_lambda: 0.95  # GAE parameter
+    clip_epsilon: 0.2  # PPO clipping
+    epochs_per_update: 10
+    batch_size: 64
+    n_steps: 2048  # Steps per update
+    ent_coef: 0.01  # Entropy coefficient
+    vf_coef: 0.5  # Value function coefficient
+    max_grad_norm: 0.5
+    
+  # Policy Network
+  policy:
+    hidden_dims: [256, 128]
+    activation: "relu"
+    
+  # Value Network
+  value:
+    hidden_dims: [256, 128]
+    activation: "relu"
+    
+# Reward Configuration
+reward:
+  # Reward = alpha * accuracy - beta * latency - gamma * compute
+  alpha: 1.0      # Accuracy weight
+  beta: 0.5       # Latency penalty
+  gamma: 0.3      # Compute penalty
+  
+  # Bonus/Penalty
+  correct_prediction_bonus: 1.0
+  incorrect_prediction_penalty: -1.0
+  
+# Environment Configuration
+environment:
+  max_steps_per_episode: 4  # Max number of layers (exits)
+  
+  # State representation
+  state:
+    include_confidence: true
+    include_layer_index: true
+    include_latency: true
+    include_compute_budget: true
+    
+  # Action space
+  action:
+    type: "discrete"  # CONTINUE or EXIT
+    
+# Training Configuration
+training:
+  eval_frequency: 10000  # Evaluate every N steps
+  save_frequency: 50000  # Save model every N steps
+  log_frequency: 1000    # Log metrics every N steps
+  
+  # Evaluation
+  eval_episodes: 100
+  
+# Checkpoint Configuration
+checkpoint:
+  save_dir: "./checkpoints/rl"
+  load_pretrained_vision: true
+  vision_checkpoint: "./checkpoints/supervised_best.pth"
